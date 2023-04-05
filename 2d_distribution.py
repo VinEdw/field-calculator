@@ -26,6 +26,14 @@ class Particle:
         E_y = E_mag * (delta_y / delta_r)
         return (E_x, E_y)
 
+    def V(self, x: float, y: float) -> float:
+        """Return the electric potential at the specified (x, y) position."""
+        delta_x = x - self.x
+        delta_y = y - self.y
+        delta_r = (delta_x**2 + delta_y**2)**0.5
+        V = k * self.q / delta_r
+        return V
+
 class Distribution:
     def __init__(self, particles: list[Particle] = None) -> None:
         """Create a new empty particle distribution."""
@@ -81,6 +89,21 @@ class Distribution:
             E_tot_x += E_x
             E_tot_y += E_y
         return (E_tot_x, E_tot_y)
+
+    def V(self, x: float, y: float, exclude: list[str] = None) -> tuple[float, float]:
+        """
+        Return the x and y components of the electric field at the specified (x, y) position.
+        Exclude the particles with the specifiecd labels.
+        """
+        if exclude is None:
+            exclude = []
+        V_tot = 0.0
+        for particle in self.particles:
+            if particle.label in exclude:
+                continue
+            V = particle.V(x, y)
+            V_tot += V
+        return V_tot
 
     def F(self, label: str) -> tuple[float, float]:
         """
