@@ -27,7 +27,10 @@ class Particle:
         return (E_x, E_y)
 
     def V(self, x: float, y: float) -> float:
-        """Return the electric potential at the specified (x, y) position."""
+        """
+        Return the electric potential at the specified (x, y) position.
+        Assume V -> 0 as r -> inf.
+        """
         delta_x = x - self.x
         delta_y = y - self.y
         delta_r = (delta_x**2 + delta_y**2)**0.5
@@ -90,10 +93,11 @@ class Distribution:
             E_tot_y += E_y
         return (E_tot_x, E_tot_y)
 
-    def V(self, x: float, y: float, exclude: list[str] = None) -> tuple[float, float]:
+    def V(self, x: float, y: float, exclude: list[str] = None) -> float:
         """
-        Return the x and y components of the electric field at the specified (x, y) position.
+        Return the electric potential at the specified (x, y) position.
         Exclude the particles with the specifiecd labels.
+        Assume V -> 0 as r -> inf.
         """
         if exclude is None:
             exclude = []
