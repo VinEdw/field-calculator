@@ -121,3 +121,21 @@ class Distribution:
         F_x = q * E_x
         F_y = q * E_y
         return (F_x, F_y)
+    
+    def U(self) -> float:
+        """
+        Return the electric potential energy of the distribution of particles.
+        Assume U -> 0 as r -> inf.
+        """
+        U_tot_double = 0
+        particles = self.particles.copy()
+        for particle in particles:
+            q = particle.q
+            x = particle.x
+            y = particle.y
+            self.particles.remove(particle)
+            U = q * self.V(x, y)
+            U_tot_double += U
+            self.particles.append(particle)
+        U_tot = U_tot_double / 2
+        return U_tot
