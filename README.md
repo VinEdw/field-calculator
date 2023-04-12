@@ -6,6 +6,8 @@ Or, calculate the electric force acting on one of the labeled charges in the dis
 
 ## Example
 
+### 2d_distribution.py
+
 ```py
 >>> d = 0.200
 >>> particles = [
