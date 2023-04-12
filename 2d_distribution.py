@@ -2,7 +2,9 @@ k = 8.99e+9
 
 class Particle:
     def __init__(self, x: float, y: float, q: float, label: int|str = None) -> None:
-        """Create a new particle of charge q at position (x, y)."""
+        """
+        Create a new particle of charge q at position (x, y).
+        """
         self.x = x
         self.y = y
         self.q = q
@@ -13,11 +15,15 @@ class Particle:
 
     @property
     def r(self) -> float:
-        """Return the distance of the particle from the origin."""
+        """
+        Return the distance of the particle from the origin.
+        """
         return (self.x**2 + self.y**2)**0.5
 
     def E(self, x: float, y: float) -> tuple[float, float]:
-        """Return the x and y components of the electric field at the specified (x, y) position."""
+        """
+        Return the x and y components of the electric field at the specified (x, y) position.
+        """
         delta_x = x - self.x
         delta_y = y - self.y
         delta_r = (delta_x**2 + delta_y**2)**0.5
@@ -39,7 +45,9 @@ class Particle:
 
 class Distribution:
     def __init__(self, particles: list[Particle] = None) -> None:
-        """Create a new empty particle distribution."""
+        """
+        Create a new empty particle distribution.
+        """
         self.particles: list[Particle] = []
         if particles is not None:
             self.add_particles(particles)
@@ -49,7 +57,9 @@ class Distribution:
     
     @property
     def labels(self) -> list[str]:
-        """Return the list of non None particle labels in use."""
+        """
+        Return the list of non None particle labels in use.
+        """
         return [item.label for item in self.particles if item.label is not None]
 
     def add_particle(self, particle: Particle) -> None:
@@ -63,12 +73,16 @@ class Distribution:
         self.particles.append(particle)
 
     def add_particles(self, particles: list[Particle]):
-        """Add the input list of particles to the distribution."""
+        """
+        Add the input list of particles to the distribution.
+        """
         for particle in particles:
             self.add_particle(particle)
 
     def get_particle(self, label: int|str) -> Particle:
-        """Get the particle with the given label."""
+        """
+        Get the particle with the given label.
+        """
         if label in self.labels:
             for particle in self.particles:
                 if label == particle.label:
