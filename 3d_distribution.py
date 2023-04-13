@@ -107,7 +107,7 @@ class Distribution:
         for particle in self.particles:
             if particle.label in exclude:
                 continue
-            E_x, E_y, E_z = particle.E(x, y)
+            E_x, E_y, E_z = particle.E(x, y, z)
             E_tot_x += E_x
             E_tot_y += E_y
             E_tot_z += E_z
@@ -125,7 +125,7 @@ class Distribution:
         for particle in self.particles:
             if particle.label in exclude:
                 continue
-            V = particle.V(x, y)
+            V = particle.V(x, y, z)
             V_tot += V
         return V_tot
 
