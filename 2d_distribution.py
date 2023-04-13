@@ -46,7 +46,7 @@ class Particle:
 class Distribution:
     def __init__(self, particles: list[Particle] = None) -> None:
         """
-        Create a new empty particle distribution.
+        Create a new particle distribution.
         """
         self.particles: list[Particle] = []
         if particles is not None:
