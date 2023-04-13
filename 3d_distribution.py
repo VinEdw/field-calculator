@@ -94,7 +94,7 @@ class Distribution:
         else:
             raise ValueError("Particle label not found.")
 
-    def E(self, x: float, y: float, z: float, exclude: list[str] = None) -> tuple[float, float]:
+    def E(self, x: float, y: float, z: float, exclude: list[str] = None) -> tuple[float, float, float]:
         """
         Return the x, y, z components of the electric field at the specified (x, y, z) position.
         Exclude the particles with the specifiecd labels.
@@ -129,7 +129,7 @@ class Distribution:
             V_tot += V
         return V_tot
 
-    def F(self, label: str) -> tuple[float, float]:
+    def F(self, label: str) -> tuple[float, float, float]:
         """
         Return the x, y, z components of the electric force on the particle with the specified label.
         """
